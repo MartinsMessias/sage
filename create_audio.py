@@ -3,14 +3,13 @@ from subprocess import call         # Mac / Linux
 # from playsound import playsound   # Windows
 
 
-def create_audio(audio: str) -> None:
-    tts = gTTS(audio, lang='en')
-    tts.save('audio/hello.mp3')
-
+def create_audio(message: str) -> None:
+    tts = gTTS(message, lang='en')
+    tts.save(f'audio/message.mp3')
+    print('Sage:', message)
     #call(['afplay', 'audio/hello.mp3'])    # Mac
     #playsound('audio/hello.mp3')           # Windows
-    call(['mpv', 'audio/hello.mp3'])        # Linux
+    call(['mpv', 'audio/message.mp3'])        # Linux
 
 
 
-create_audio('Hello I\'m Sage, how can I help you?')
