@@ -1,4 +1,8 @@
+from subprocess import call         # Mac / Linux
+# from playsound import playsound   # Windows
+
 import speech_recognition as sr
+
 
 #Hotwords
 hotword = 'sage'
@@ -20,9 +24,17 @@ def mic_monitor() -> None:
 
                 if hotword in trigger:
                     print('Command: ', trigger)
-                    ## then
+                    responds('hello')
+                    break
+
             except sr.UnknownValueError:
                 print("Google Speech Recognition could not understand audio")
             except sr.RequestError as e:
                 print("Could not request results from Google Speech Recognition service; {0}".format(e))
+    return trigger
+
+def responds(file) -> None:
+    call(['mpv', f'audio/{file}.mp3'])  # Linux
+
+
 mic_monitor()
